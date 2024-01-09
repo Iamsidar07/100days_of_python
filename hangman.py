@@ -82,6 +82,12 @@ word_list = [
     "baby",
     "aardvark",
     "baboon",
+    "interesting",
+    "manifestation",
+    "sacrifice",
+    "lover",
+    "monika",
+    "monikasidar",
 ]
 chosen_word = random.choice(word_list)
 print(logo)
