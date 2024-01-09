@@ -113,7 +113,7 @@ while "".join(blanks) != chosen_word and lives > 0:
         # loose a life
         print(stages[lives - 1])
         lives -= 1
-        print("Loose a life...", lives)
+        print(f"Loose a life..., {lives} lives left")
         # have they run out of lives
         if lives == 0:
             print("Game Over")
