@@ -74,7 +74,6 @@ print(logo)
 
 blanks = []
 lives = len(stages)
-index = 0
 for blank in range(len(chosen_word)):
   blanks += "_"
 
