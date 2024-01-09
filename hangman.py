@@ -67,14 +67,14 @@ logo = '''
                     __/ |                      
                    |___/    '''
 
-word_list = ["camel","iloveu","monu","manoj","baby"]
+word_list = ["camel","iloveu","monu","manoj","baby","aardvark", "baboon",]
 chosen_word = random.choice(word_list)
 print(logo)
 # print(chosen_word)
 
 blanks = []
 lives = len(stages)
-
+index = 0
 for blank in range(len(chosen_word)):
   blanks += "_"
 
@@ -83,15 +83,18 @@ while "".join(blanks) != chosen_word and lives >0:
     print(result)
     guess = input("Guess a letter in word? ").lower()
     is_correct = False
+    index = 0
     for letter in chosen_word:
         if letter == guess:
             # Replace blanks with letter
-            blanks[chosen_word.index(letter)] = letter
+            blanks[index] = letter
             is_correct = True
             # all blanks are filled
             if "".join(blanks) == chosen_word:
                 print("".join(blanks))
                 print("Game over, You Won")
+        index +=1
+    
     if not is_correct:
         # loose a life
         print(stages[lives -1])
