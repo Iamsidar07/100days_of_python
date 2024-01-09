@@ -102,6 +102,7 @@ right_attempts = 0
 
 
 def show_result():
+    print(chosen_word)
     print(
         f"Score: {score}\nAccuracy: {round((right_attempts/total_attempts)*100,2)}%\nTotal attempts: {total_attempts}\nRight Attempts: {right_attempts}\nWrong Attempts: {wrong_attempts}"
     )
@@ -128,7 +129,6 @@ while "".join(blanks) != chosen_word and lives > 0:
         score += random.randint(10, 20)
         right_attempts += 1
         if "".join(blanks) == chosen_word:
-            print("".join(blanks))
             print("Game over, You Won")
             show_result()
 
