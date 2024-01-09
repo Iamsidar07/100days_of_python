@@ -1,6 +1,7 @@
 import random
 
-stages = ['''
+stages = [
+    """
   +---+
   |   |
   O   |
@@ -8,7 +9,8 @@ stages = ['''
  / \  |
       |
 =========
-''', '''
+""",
+    """
   +---+
   |   |
   O   |
@@ -16,7 +18,8 @@ stages = ['''
  /    |
       |
 =========
-''', '''
+""",
+    """
   +---+
   |   |
   O   |
@@ -24,14 +27,16 @@ stages = ['''
       |
       |
 =========
-''', '''
+""",
+    """
   +---+
   |   |
   O   |
  /|   |
       |
       |
-=========''', '''
+=========""",
+    """
   +---+
   |   |
   O   |
@@ -39,7 +44,8 @@ stages = ['''
       |
       |
 =========
-''', '''
+""",
+    """
   +---+
   |   |
   O   |
@@ -47,7 +53,8 @@ stages = ['''
       |
       |
 =========
-''', '''
+""",
+    """
   +---+
   |   |
       |
@@ -55,19 +62,27 @@ stages = ['''
       |
       |
 =========
-''']
+""",
+]
 
-logo = ''' 
- _                                             
-| |                                            
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                    __/ |                      
-                   |___/    '''
+logo = """
+░██████╗░██╗░░░██╗███████╗░██████╗░██████╗███╗░░░███╗███████╗
+██╔════╝░██║░░░██║██╔════╝██╔════╝██╔════╝████╗░████║██╔════╝
+██║░░██╗░██║░░░██║█████╗░░╚█████╗░╚█████╗░██╔████╔██║█████╗░░
+██║░░╚██╗██║░░░██║██╔══╝░░░╚═══██╗░╚═══██╗██║╚██╔╝██║██╔══╝░░
+╚██████╔╝╚██████╔╝███████╗██████╔╝██████╔╝██║░╚═╝░██║███████╗
+░╚═════╝░░╚═════╝░╚══════╝╚═════╝░╚═════╝░╚═╝░░░░░╚═╝╚══════╝
+"""
 
-word_list = ["camel","iloveu","monu","manoj","baby","aardvark", "baboon",]
+word_list = [
+    "camel",
+    "iloveu",
+    "monu",
+    "manoj",
+    "baby",
+    "aardvark",
+    "baboon",
+]
 chosen_word = random.choice(word_list)
 print(logo)
 # print(chosen_word)
@@ -75,9 +90,9 @@ print(logo)
 blanks = []
 lives = len(stages)
 for blank in range(len(chosen_word)):
-  blanks += "_"
+    blanks += "_"
 
-while "".join(blanks) != chosen_word and lives >0:
+while "".join(blanks) != chosen_word and lives > 0:
     result = " ".join(blanks)
     print(result)
     guess = input("Guess a letter in word? ").lower()
@@ -92,12 +107,12 @@ while "".join(blanks) != chosen_word and lives >0:
             if "".join(blanks) == chosen_word:
                 print("".join(blanks))
                 print("Game over, You Won")
-        index +=1
-    
+        index += 1
+
     if not is_correct:
         # loose a life
-        print(stages[lives -1])
-        lives -=1
+        print(stages[lives - 1])
+        lives -= 1
         print("Loose a life...", lives)
         # have they run out of lives
         if lives == 0:
