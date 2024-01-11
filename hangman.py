@@ -76,7 +76,7 @@ logo = """
 
 word_list = [
     "camel",
-    "iloveu",
+    "iloveyou",
     "monu",
     "manoj",
     "baby",
@@ -91,7 +91,6 @@ word_list = [
 ]
 chosen_word = random.choice(word_list)
 print(logo)
-# print(chosen_word)
 
 blanks = []
 lives = len(stages)
