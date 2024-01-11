@@ -25,7 +25,7 @@ def start_bid():
 
 
 def show_winner():
-    max_bid = logs[0]["amount"]
+    max_bid = -1
     name = ""
     for log in logs:
         if max_bid < log["amount"]:
