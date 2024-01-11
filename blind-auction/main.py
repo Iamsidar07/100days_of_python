@@ -9,7 +9,7 @@ logs = []
 def start_bid():
     name = input("What is your name? ")
     bid_amount = int(input("What's your bid? $"))
-    other_bidders = input("Are there any other bidders? Type 'yes' or 'no'.").lower()
+    other_bidders = input("Are there any other bidders? Type 'yes' or 'no'. ").lower()
     bid_log = {}
     bid_log["name"] = name
     bid_log["amount"] = bid_amount
