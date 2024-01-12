@@ -17,6 +17,7 @@ def start_bid():
     if other_bidders == "yes":
         # clear console
         sys.stdout.write("\033[H\033[J")
+        print(logo)
         start_bid()
     elif other_bidders == "no":
         show_winner()
