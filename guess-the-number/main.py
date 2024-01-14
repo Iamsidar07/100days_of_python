@@ -20,7 +20,7 @@ while not is_game_over and number_of_chances > 0:
     if user_guess > target:
         print("Too high")
     elif user_guess < target:
-        print("To low")
+        print("Too low")
     else:
         print("Won")
         is_game_over = True
