@@ -15,9 +15,21 @@ right_attempts = 0
 
 
 def show_result():
+    """
+    Shows the reports
+    Score: 103
+    Accuracy: 78%
+    Total attempts: 12
+    Right attempts: 10
+    Wrong attempts: 2
+    """
     print(chosen_word)
     print(
-        f"Score: {score}\nAccuracy: {round((right_attempts/total_attempts)*100,2)}%\nTotal attempts: {total_attempts}\nRight Attempts: {right_attempts}\nWrong Attempts: {wrong_attempts}"
+        f"Score: {score}\n"
+        f"Accuracy: {round((right_attempts/total_attempts)*100,2)}%\n"
+        f"Total attempts: {total_attempts}\n"
+        f"Right Attempts: {right_attempts}\n"
+        f"Wrong Attempts: {wrong_attempts}"
     )
 
 
