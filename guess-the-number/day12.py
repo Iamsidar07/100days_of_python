@@ -1,5 +1,4 @@
 # Scope
-
 enemies = 1
 
 

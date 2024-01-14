@@ -1,14 +1,14 @@
-from art import logo
 import random
+from art import logo
 
 print(logo)
 print("Welcome to the guess the number game.")
 target = random.randint(1, 100)
 print("I'm thinking of a number between 1 and 100 :")
-diffiucltilevel = input(
-    "Choose your game difficulti level. Type 'easy' or 'hard': "
+difficultyLevel = input(
+    "Choose your game difficulty level. Type 'easy' or 'hard': "
 ).lower()
-if diffiucltilevel == "easy":
+if difficultyLevel == "easy":
     number_of_chances = 10
 else:
     number_of_chances = 5

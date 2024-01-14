@@ -1,0 +1,15 @@
+word_list = [
+    "camel",
+    "iloveyou",
+    "monu",
+    "manoj",
+    "baby",
+    "aardvark",
+    "baboon",
+    "interesting",
+    "manifestation",
+    "sacrifice",
+    "lover",
+    "monika",
+    "monikasidar",
+]
