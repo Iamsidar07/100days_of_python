@@ -45,11 +45,11 @@ while game_should_continue:
     print(vs)
     print(f"Against B: {format_data(account_b)}")
     user_guess = input("Who has more followers? Type 'A' or 'B': ").lower()
-    if check_answer(user_guess, account_a["follower_count"], account_b["follower_count"]):
-        print("Right")
+    if check_answer(
+        user_guess, account_a["follower_count"], account_b["follower_count"]
+    ):
         score += 1
         print(f"You're right! Current score: {score}")
     else:
-        print("Wrong")
         game_should_continue = False
         print(f"Sorry! that's wrong, score: {score}")
