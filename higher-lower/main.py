@@ -6,7 +6,7 @@ from game_data import data
 
 def get_random_account():
     """
-    returns a random account from data list
+    Returns a random account from data list
     """
     return random.choice(data)
 
