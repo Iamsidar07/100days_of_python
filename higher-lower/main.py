@@ -1,6 +1,7 @@
+import random
+
 from art import logo, vs
 from game_data import data
-import random
 
 
 def get_random_account():
