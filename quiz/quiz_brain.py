@@ -1,10 +1,15 @@
 class QuizBrain:
+    # __init__ function runs every time when an object is being created from this class and sets up initial states of
+    # attributes
     def __init__(self, q_list):
         self.question_number = 0
         self.score = 0
         self.question_list = q_list
 
     def next_question(self):
+        """
+        Moves to next question and checks the user answer
+        """
         current_question = self.question_list[self.question_number]
         self.question_number += 1
         user_answer = input(
@@ -13,9 +18,15 @@ class QuizBrain:
         self.check_answer(user_answer, current_question.answer)
 
     def still_has_questions(self):
+        """
+        Returns True if question_list has any remaining questions or False if all question are finished.
+        """
         return self.question_number < len(self.question_list)
 
     def check_answer(self, user_answer, correct_answer):
+        """
+        Checks the user answer against actual answer, and increase score by 1 if it is correct
+        """
         if user_answer.lower() == correct_answer.lower():
             self.score += 1
             print("You got it right!")
