@@ -3,6 +3,7 @@
 # camelCase
 # snake_case
 
+
 class User:
     # pass  # null operation
     def __init__(self, user_id, username):
