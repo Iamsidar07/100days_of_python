@@ -5,9 +5,12 @@ import turtle as t
 
 tim = t.Turtle()
 
+# set colormode to 255 as integer not as string to give rgb value as color
 t.colormode(255)
 
+# turtle shape
 tim.shape("turtle")
+# control the speed of turtle movement
 tim.speed("fastest")
 # tim.color("red")
 # for _ in range(4):
@@ -42,6 +45,9 @@ colors = ["red", "orange", "yellow", "green", "brown", "yellow"]
 #     tim.color(random_color)
 #     draw_shape(shape_side)
 # directions = [0, 90, 180, 270]
+
+# tupple -> (1, 2, 3)
+# Immutable -> we can not change it
 
 
 def random_color():
