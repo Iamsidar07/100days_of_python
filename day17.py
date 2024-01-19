@@ -1,4 +1,5 @@
 import random
+
 # from turtle import
 import turtle as t
 
@@ -58,6 +59,7 @@ def random_color():
 #     tim.speed(random.randint(4, 9))
 #     tim.forward(30)
 #     tim.setheading(random.choice(directions))
+
 
 def draw_spirograph(size_of_gap):
     for _ in range(int(360 / size_of_gap)):

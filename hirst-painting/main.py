@@ -2,7 +2,6 @@ import random
 
 # import colorgram
 import turtle as t
-import random
 
 tim = t.Turtle()
 t.colormode(255)
@@ -20,20 +19,25 @@ tim.hideturtle()
 #
 # print(rgb_colors)
 
-color_list = [(211, 210, 210), (189, 167, 121), (57, 90, 111), (113, 43, 35), (163, 89, 64), (210, 212, 214)]
+color_list = [
+    (211, 210, 210),
+    (189, 167, 121),
+    (57, 90, 111),
+    (113, 43, 35),
+    (163, 89, 64),
+    (210, 212, 214),
+]
 
-# tim.home()
-#
-#
+
 # def draw_row():
-#     for num in range(10):
+#     for _ in range(10):
 #         random_color = random.choice(color_list)
 #         tim.dot(20, random_color)
-#         tim.penup()
+#         # tim.penup()
 #         tim.forward(50)
 #
 #
-# for row in range(11):
+# for row in range(1, 11):
 #     draw_row()
 #     tim.sety(row * 50)
 #     tim.setx(0)
