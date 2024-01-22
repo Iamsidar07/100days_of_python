@@ -9,6 +9,7 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.title("My Snake Game")
 screen.bgcolor("black")
+# tracer method -> turn off animation
 screen.tracer(0)
 
 snake = Snake()
@@ -22,10 +23,16 @@ screen.onkey(fun=snake.right, key="Right")
 
 is_game_on = True
 while is_game_on:
+    # Update screen delay of every 0.1 second
     screen.update()
     time.sleep(0.1)
     snake.move()
     # Detect collision with food
+    # When the distance b/w snake head and food is less than 15 means ->
+    # snake ate food
+    # refresh food -> add new food at random location
+    # update scoreboard
+    # extend snake tail
     if snake.head.distance(food) < 15:
         food.refresh()
         scoreboard.increase_score()

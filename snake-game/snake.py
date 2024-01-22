@@ -17,10 +17,12 @@ class Snake:
         self.head = self.segments[0]
 
     def create_snake(self):
+        """Creates initial shape of snake."""
         for position in STARTING_POSITIONS:
             self.add_segment(position)
 
     def add_segment(self, position):
+        """Create a new segment of a turtle and appends into segments list."""
         new_segment = Turtle(shape="square")
         new_segment.penup()
         new_segment.color("white")
@@ -28,6 +30,7 @@ class Snake:
         self.segments.append(new_segment)
 
     def extend(self):
+        """Add a new segment at the end of snake."""
         # Add new segment
         position = self.segments[-1].position()
         self.add_segment(position)
