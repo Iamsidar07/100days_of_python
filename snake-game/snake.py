@@ -1,5 +1,5 @@
 from turtle import Turtle
-from food import Food
+
 
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
