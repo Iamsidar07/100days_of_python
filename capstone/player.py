@@ -12,6 +12,18 @@ class Player(Turtle):
     def go_up(self):
         self.forward(10)
 
+    def go_down(self):
+        if self.ycor() > -280:
+            self.backward(10)
+    
+    def go_left(self):
+        if self.xcor() > -280:
+            self.goto(self.xcor() - 10, self.ycor())
+    
+    def go_right(self):
+        if self.xcor() < 280:
+            self.goto(self.xcor() + 10, self.ycor())
+
     def go_to_start(self):
         self.goto(0, -280)
 

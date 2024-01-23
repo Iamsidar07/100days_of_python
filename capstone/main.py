@@ -15,6 +15,9 @@ scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(fun=player.go_up, key="Up")
+screen.onkey(fun=player.go_down, key="Down")
+screen.onkey(fun=player.go_left, key="Left")
+screen.onkey(fun=player.go_right, key="Right")
 
 is_game_on = True
 while is_game_on:
