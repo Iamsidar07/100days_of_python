@@ -44,7 +44,6 @@ import pandas
 # data = pandas.DataFrame(data_dict)
 # print(data)
 # data.to_csv("new_data.csv")
-fur_count = {}
 data = pandas.read_csv("squirrel.csv")
 gray_squirrel_count = len(data[data["Primary Fur Color"] == "Gray"])
 black_squirrel_count = len(data[data["Primary Fur Color"] == "Black"])
