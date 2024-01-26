@@ -1,14 +1,14 @@
 import turtle
 import pandas
 
-IMAGE = "./blank_states_img.gif"
+IMAGE = "blank_states_img.gif"
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 
 screen.addshape(IMAGE)
 turtle.shape(IMAGE)
 
-data = pandas.read_csv("./50_states.csv")
+data = pandas.read_csv("50_states.csv")
 all_states = data.state.to_list()
 guessed_list = []
 is_game_on = True
