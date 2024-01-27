@@ -34,19 +34,4 @@ input.grid(column=3, row=2)
 new_btn = Button(text="Another Button")
 new_btn.grid(column=2, row=0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 window.mainloop() # very end of the program
