@@ -1,21 +1,68 @@
+import random
 from tkinter import *
 from tkinter import messagebox
-import random
+
 import pyperclip
-
-
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
 # Generate password
 def generate_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v',
-               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
-               'R',
-               'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+    letters = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+    ]
+    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
 
     nr_letters = random.randint(8, 10)
     nr_symbols = random.randint(2, 4)
@@ -30,8 +77,6 @@ def generate_password():
     password_input.insert(0, password)
 
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
-
 def save_password():
     website = website_input.get()
     email = email_or_username_input.get()
@@ -41,16 +86,15 @@ def save_password():
         messagebox.showinfo(title="Oops", message="Please don't left any field empty!")
         return
 
-    is_ok = messagebox.askokcancel(title=website,
-                                   message=f"These are the details entered:\nEmail: {email}\nPassword: {password}")
+    is_ok = messagebox.askokcancel(
+        title=website,
+        message=f"These are the details entered:\nEmail: {email}\nPassword: {password}",
+    )
     if is_ok:
         with open("data.txt", mode="a") as file:
             file.write(f"{website} | {email} | {password}\n")
             website_input.delete(0, END)
             password_input.delete(0, END)
-
-
-# ---------------------------- UI SETUP ------------------------------- #
 
 
 window = Tk()
