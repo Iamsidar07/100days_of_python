@@ -39,7 +39,7 @@ for birthday_person in emails_to_send_today:
     msg = letter.strip().replace("[NAME]", birthday_person["name"])
 
     # send email with smtp
-    
+
     with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
         connection.starttls()
         connection.login(my_email, password)
@@ -48,6 +48,8 @@ for birthday_person in emails_to_send_today:
             to_addrs=birthday_person["email"],
             msg=f"Subject:{subject}\n\n{msg}",
         )
-        print(f"Email sent to {birthday_person['name']}, email: {birthday_person['email']}")
+        print(
+            f"Email sent to {birthday_person['name']}, email: {birthday_person['email']}"
+        )
     # wait for 500ms
     time.sleep(0.05)
