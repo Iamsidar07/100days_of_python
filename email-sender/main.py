@@ -1,13 +1,17 @@
-# deploy to pythonanywhere cloud
 import pandas as pd
 import datetime as dt
 import random
 import smtplib
 import time
+from dotenv import load_dotenv
+import os
 
-MY_EMAIL = "ms8460149@gmail.com"
-PASSWORD = "lmfbnmkslbohnnjq"
-SUBJECT = "Happy Birthday Wish"
+load_dotenv()
+
+
+my_email = os.getenv("MY_EMAIL")
+password = os.getenv("PASSWORD")
+subject = "Happy Birthday Wish"
 
 data = pd.read_csv("./data/birthdays.csv")
 letter_path = ["./letters/letters_1.txt", "./letters/letters_2.txt"]
@@ -36,13 +40,13 @@ for birthday_person in emails_to_send_today:
 
     # send email with smtp
     
-    with smtplib.SMTP("smtp.gmail.com") as connection:
+    with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
         connection.starttls()
-        connection.login(MY_EMAIL, PASSWORD)
+        connection.login(my_email, password)
         connection.sendmail(
-            from_addr=MY_EMAIL,
+            from_addr=my_email,
             to_addrs=birthday_person["email"],
-            msg=f"Subject:{SUBJECT}\n\n{msg}",
+            msg=f"Subject:{subject}\n\n{msg}",
         )
         print(f"Email sent to {birthday_person['name']}, email: {birthday_person['email']}")
     # wait for 500ms
