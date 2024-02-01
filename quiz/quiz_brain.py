@@ -1,3 +1,6 @@
+import html
+
+
 class QuizBrain:
     # __init__ function runs every time when an object is being created from this class and sets up initial states of
     # attributes
@@ -12,8 +15,9 @@ class QuizBrain:
         """
         current_question = self.question_list[self.question_number]
         self.question_number += 1
+        q_text = html.unescape(current_question.text)
         user_answer = input(
-            f"Q.{self.question_number}: {current_question.text} (True/False)?: "
+            f"Q.{self.question_number}: {q_text} (True/False)?: "
         )
         self.check_answer(user_answer, current_question.answer)
 
