@@ -11,6 +11,8 @@ MY_LONG = 83.195923
 API_KEY = os.getenv("API_KEY")
 account_sid = os.getenv("TWILIO_ACCOUNT_SID")
 auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+from_ = os.getenv("FROM_")
+to = os.getenv("TO")
 client = Client(account_sid, auth_token)
 parameters = {
     "lat": MY_LAT, 
@@ -32,8 +34,8 @@ for weather in data["list"]:
 if will_rain:
     # Send text sms0
     message = client.messages.create(
-        from_="+14783129798",
-        to="+917879189091",
+        from_=from_,
+        to=to,
         body="Take umbrella☂️ with you. It's rainny today!",
     )
     print(message)
