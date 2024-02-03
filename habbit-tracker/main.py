@@ -20,7 +20,9 @@ user_data = {
 # print("create user: ", response.text)
 
 # Create graph
-headers = {"X-USER-TOKEN": SECRET}
+headers = {
+    "X-USER-TOKEN": SECRET
+}
 
 graph_data = {
     "id": GRAPH_ID,
@@ -36,7 +38,10 @@ graph_data = {
 
 today = datetime.now().strftime("%Y%m%d")
 # post value to the graph
-post_value_data = {"date": today, "quantity": input("How many commits? ")}
+post_value_data = {
+    "date": today, 
+    "quantity": input("How many commits? ")
+}
 
 response = requests.post(
     url=f"{BASE_URL}/{USERNAME}/graphs/{GRAPH_ID}",
@@ -47,10 +52,17 @@ response.raise_for_status()
 print("streak", response.text)
 
 new_pixel_data = {"quantity": "1"}
-# response = requests.put(url=f"{BASE_URL}/{USERNAME}/graphs/{GRAPH_ID}/{today}", json=new_pixel_data, headers=headers)
+# response = requests.put(
+#     url=f"{BASE_URL}/{USERNAME}/graphs/{GRAPH_ID}/{today}",
+#       json=new_pixel_data, 
+#       headers=headers
+# )
 # response.raise_for_status()
 # print(response.text)
 
-# response = requests.delete(url=f"{BASE_URL}/{USERNAME}/graphs/{GRAPH_ID}/{today}",  headers=headers)
+# response = requests.delete(
+#     url=f"{BASE_URL}/{USERNAME}/graphs/{GRAPH_ID}/{today}",  
+#     headers=headers
+# )
 # response.raise_for_status()
 # print(response.text)
