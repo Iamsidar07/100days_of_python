@@ -13,7 +13,7 @@ def get_quote():
 
 
 window = Tk()
-window.title("Kanye Says...")
+window.title("Kanye Says..")
 window.config(padx=50, pady=50)
 
 canvas = Canvas(width=300, height=414)
