@@ -27,10 +27,7 @@ response = requests.post(
     headers=headers,
 )
 response.raise_for_status()
-data = response.json()["exercises"][0]
-exercise = data["name"]
-duration = data["duration_min"]
-calories = data["nf_calories"]
+data = response.json()["exercises"]
 
 now = datetime.now().strftime("%d/%m/%Y")
 current_time = datetime.now().strftime("%H:%M:%S")
@@ -39,21 +36,24 @@ google_sheety_headers = {
     "Authorization": f"Bearer {GOOGLE_SHEET_TOKEN}"
 }
 
-google_sheety_req_body = {
-    "workout": {
-        "date": now,
-        "time": current_time,
-        "exercise": exercise.title(),
-        "duration": duration,
-        "calories": calories,
+for exercies_data in data:
+    exercise = exercies_data["name"]
+    duration = exercies_data["duration_min"]
+    calories = exercies_data["nf_calories"]
+    google_sheety_req_body = {
+        "workout": {
+            "date": now,
+            "time": current_time,
+            "exercise": exercise.title(),
+            "duration": duration,
+            "calories": calories,
+        }
     }
-}
-
-response = requests.post(
-    url=GOOGLE_SHEETY_ENDPOINT,
-    json=google_sheety_req_body,
-    headers=google_sheety_headers,
-)
-response.raise_for_status()
-data = response.json()
-print(data)
+    response = requests.post(
+        url=GOOGLE_SHEETY_ENDPOINT,
+        json=google_sheety_req_body,
+        headers=google_sheety_headers,
+    )
+    response.raise_for_status()
+    exercies_data = response.json()
+    print(exercies_data["workout"])
