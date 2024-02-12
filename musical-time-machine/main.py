@@ -1,8 +1,9 @@
-import requests
-from bs4 import BeautifulSoup
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 import os
+
+import requests
+import spotipy
+from bs4 import BeautifulSoup
+from spotipy.oauth2 import SpotifyOAuth
 
 SPOTIFY_CLIENT_ID = os.environ.get(["SPOTIFY_CLIENT_ID"])
 SPOTIFY_CLIENT_SECRET = os.environ.get(["SPOTIFY_CLIENT_SECRET"])
