@@ -8,7 +8,7 @@ from spotipy.oauth2 import SpotifyOAuth
 SPOTIFY_CLIENT_ID = os.environ.get(["SPOTIFY_CLIENT_ID"])
 SPOTIFY_CLIENT_SECRET = os.environ.get(["SPOTIFY_CLIENT_SECRET"])
 
-sp = spotipy.Spotify(
+spotify = spotipy.Spotify(
     auth_manager=SpotifyOAuth(
         client_id=SPOTIFY_CLIENT_ID,
         client_secret=SPOTIFY_CLIENT_SECRET,
@@ -31,11 +31,11 @@ soup = BeautifulSoup(html_contents, "html.parser")
 songs = soup.select("li ul li h3")
 song_titles = [song.getText().strip() for song in songs]
 
-USER_ID = sp.current_user()["id"]
+USER_ID = spotify.current_user()["id"]
 
 song_uris = []
 for song in song_titles:
-    result = sp.search(
+    result = spotify.search(
         q=f"track:{song} year:{desired_date.split('-')[0]}", type="track"
     )
     try:
@@ -47,10 +47,10 @@ for song in song_titles:
 PLAYLIST_NAME = f"{desired_date} Billboard 100"
 
 
-playlist = sp.user_playlist_create(
+playlist = spotify.user_playlist_create(
     name=PLAYLIST_NAME, user=USER_ID, public=False, description="100 billboard"
 )
 
 PLAYLIST_ID = playlist["id"]
 
-result = sp.playlist_add_items(playlist_id=PLAYLIST_ID, items=song_uris)
+spotify.playlist_add_items(playlist_id=PLAYLIST_ID, items=song_uris)
