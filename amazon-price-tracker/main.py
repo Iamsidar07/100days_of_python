@@ -36,7 +36,7 @@ html = f"""\
         <body>
             <h2>{product_title}</h2>
             <img src={img_src} alt={product_title}/>
-            <p>Price has been drop out to <span style={"font-weight: bold"}>{price_tag.getText()}</span>, Checkout your product</p>
+            <p>Price has been drop out to <span style={"font-weight: bold;"}>{price_tag.getText()}</span>, Checkout your product</p>
             <p>
                 <a href={PRODUCT_URL}>{PRODUCT_URL}</a>
             </p>
