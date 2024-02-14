@@ -26,7 +26,7 @@ driver.implicitly_wait(0.5)
 
 product_title = driver.find_element(By.ID, value="productTitle").text
 
-add_to_cart = driver.find_element(By.CLASS_NAME, value=".add-to-cart")
+add_to_cart = driver.find_element(By.CLASS_NAME, value="add-to-cart")
 print(add_to_cart.click())
 
 driver.quit()
