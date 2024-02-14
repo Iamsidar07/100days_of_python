@@ -22,10 +22,10 @@ event_links = [event_title.get_attribute("href") for event_title in event_title_
 event_dict = {}
 for i in range(len(event_dates)):
     new_event = {
-            "link": event_links[i],
-            "title":  event_titles[i],
-            "time": event_dates[i].split("T")[0]
-        }
+        "link": event_links[i],
+        "title": event_titles[i],
+        "time": event_dates[i].split("T")[0]
+    }
 
     event_dict[i] = new_event
 
