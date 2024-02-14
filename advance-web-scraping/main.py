@@ -1,26 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
-chrome_options = webdriver.ChromeOptions()
+chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
+
 driver = webdriver.Chrome(options=chrome_options)
 
-driver.get("https://www.amazon.in/Apple-2023-MacBook-Laptop-chip/dp/B0C75GV58R/ref=sr_1_3?keywords=macbook+air+m2+15"
-           "+inch&sr=8-3")
+driver.get('https://www.amazon.in/')
 
-price_symbol = driver.find_element(By.CLASS_NAME, "a-price-symbol")
-price = driver.find_element(By.CLASS_NAME, "a-price-whole")
+title = driver.title
 
-print({price, price_symbol})
+driver.implicitly_wait(0.5)
 
-search = driver.find_element(By.NAME, value="field-keywords")
-search.send_keys("Macbook air 15 inch", Keys.ENTER)
+search_input = driver.find_element(By.NAME, value="field-keywords")
+search_input.send_keys("Macbook air 15 inch", Keys.ENTER)
 
-add_to_cart = driver.find_element(By.ID, value="add-to-cart-button")
-add_to_cart.click()
+driver.implicitly_wait(0.5)
 
-buy_now = driver.find_element(By.ID, value="buy-now-button")
-buy_now.click()
+amazon_choice_product = driver.find_element(By.CLASS_NAME, value="a-badge-region")
+amazon_choice_product.click()
+
+driver.implicitly_wait(0.5)
+
+product_title = driver.find_element(By.ID, value="productTitle").text
+
+add_to_cart = driver.find_element(By.CLASS_NAME, value=".add-to-cart")
+print(add_to_cart.click())
 
 driver.quit()
