@@ -6,8 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-EMAIL = "ms8460149@gmail.com"
-PASSWORD = "Manoj432003@"
+EMAIL = ""
+PASSWORD = ""
 
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
