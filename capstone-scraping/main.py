@@ -1,5 +1,4 @@
 import time
-
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -14,18 +13,10 @@ ZILLOW_URL = "https://appbrewery.github.io/Zillow-Clone/"
 
 response = requests.get(ZILLOW_URL)
 html_content = response.text
-
 soup = BeautifulSoup(html_content, "html.parser")
-prices = [
-    price.text
-    for price in soup.select(selector=".PropertyCardWrapper__StyledPriceLine")
-]
-locs = [
-    loc.text for loc in soup.select(selector=".StyledPropertyCardDataWrapper address")
-]
-urls = [
-    url.get("href") for url in soup.select(selector=".StyledPropertyCardDataWrapper a")
-]
+prices = [price.text for price in soup.select(selector=".PropertyCardWrapper__StyledPriceLine")]
+locs = [loc.text for loc in soup.select(selector=".StyledPropertyCardDataWrapper address")]
+urls = [url.get("href") for url in soup.select(selector=".StyledPropertyCardDataWrapper a")]
 
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
