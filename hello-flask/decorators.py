@@ -20,13 +20,13 @@ def speed_calc_decorator(function):
 @speed_calc_decorator
 def fast_function():
     for i in range(1000):
-        i * i
+        var = i * i
 
 
 @speed_calc_decorator
 def slow_function():
     for i in range(10000):
-        i * i
+        var = i * i
 
 
 fast_function()
