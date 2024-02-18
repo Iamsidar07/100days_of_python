@@ -35,6 +35,7 @@ while len(guessed_list) <= 50:
         state_pos_y = int(state_data.y.iloc[0])
         tim = turtle.Turtle()
         tim.shape("circle")
+        tim.hideturtle()
         tim.penup()
         tim.goto(state_pos_x, state_pos_y)
         tim.write(state_name, align="center", font=("Courier", 12, "normal"))
