@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Blog</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    {% for post in posts: %} {% if post["id"] == 2: %}
+    <h2>{{post["title"]}}</h2>
+    <h3>{{post["subtitle"]}}</h3>
+    {% endif %} {% endfor %}
+  </body>
+</html>
