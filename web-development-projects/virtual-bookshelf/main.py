@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 # import database
-import sqlite3
+# import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float
@@ -15,7 +15,7 @@ app = Flask(__name__)
 db = SQLAlchemy(model_class=Base)
 # db = sqlite3.connect("new-books-collection.db")
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///random-books-collection.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///books-collection.db"
 db.init_app(app)
 
 
@@ -45,37 +45,37 @@ with app.app_context():
 # book_id = 1
 # create record
 # with app.app_context():
-    # delete table
-    # db.drop_all()
-    # create new record
-    # new_book = Book(id=1, title="Harry Potter", author="J. K. Rowling", rating=9.3)
-    # db.session.add(new_book)
-    # db.session.commit()
-    # read all records
-    # result = db.session.execute(db.select(Book).order_by(Book.title))
-    # print(result)
-    # all_books = result.scalars()
-    # print(all_books)
-    # read a particular record by query
-    # result = db.session.execute(db.select(Book).where(Book.title == "Harry Potter"))
-    # single_book = result.scalar()
-    # print(result, single_book)
-    # update a record
-    # book_to_update = db.session.execute(db.select(Book).where(Book.title == "Harry Potter")).scalar()
-    # book_to_update.title = "Harry Potter and Chamber of Secrets"
-    # db.session.commit()
-    # print(book_to_update)
-    # update a record by primary key
-    # book_to_update = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
-    # book_to_update = db.get_or_404(Book, book_id)
-    # book_to_update.title = "Harry Porter Yan"
-    # db.session.commit()
-    # delete a record by primary key
-    # book_to_delete = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
-    # book_to_delete = db.get_or_404(Book, book_id)
-    # db.session.delete(book_to_delete)
-    # db.session.commit()
-    # pass
+# delete table
+# db.drop_all()
+# create new record
+# new_book = Book(id=1, title="Harry Potter", author="J. K. Rowling", rating=9.3)
+# db.session.add(new_book)
+# db.session.commit()
+# read all records
+# result = db.session.execute(db.select(Book).order_by(Book.title))
+# print(result)
+# all_books = result.scalars()
+# print(all_books)
+# read a particular record by query
+# result = db.session.execute(db.select(Book).where(Book.title == "Harry Potter"))
+# single_book = result.scalar()
+# print(result, single_book)
+# update a record
+# book_to_update = db.session.execute(db.select(Book).where(Book.title == "Harry Potter")).scalar()
+# book_to_update.title = "Harry Potter and Chamber of Secrets"
+# db.session.commit()
+# print(book_to_update)
+# update a record by primary key
+# book_to_update = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
+# book_to_update = db.get_or_404(Book, book_id)
+# book_to_update.title = "Harry Porter Yan"
+# db.session.commit()
+# delete a record by primary key
+# book_to_delete = db.session.execute(db.select(Book).where(Book.id == book_id)).scalar()
+# book_to_delete = db.get_or_404(Book, book_id)
+# db.session.delete(book_to_delete)
+# db.session.commit()
+# pass
 
 
 # connect to database
