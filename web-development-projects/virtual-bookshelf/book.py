@@ -1,4 +1,4 @@
-class Book:
+class BookItem:
     def __init__(self, title, author, rating):
         self.title = title
         self.author = author
