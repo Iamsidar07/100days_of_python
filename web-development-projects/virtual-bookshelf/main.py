@@ -44,7 +44,7 @@ with app.app_context():
 
 # book_id = 1
 # create record
-with app.app_context():
+# with app.app_context():
     # delete table
     # db.drop_all()
     # create new record
@@ -75,7 +75,7 @@ with app.app_context():
     # book_to_delete = db.get_or_404(Book, book_id)
     # db.session.delete(book_to_delete)
     # db.session.commit()
-    pass
+    # pass
 
 
 # connect to database
