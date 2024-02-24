@@ -68,7 +68,7 @@ def get_all_cafes():
 # find a cafe by location
 @app.route("/search")
 def get_cafe_by_query():
-    location = request.args.get("loc").title().strip()
+    location = request.args.get("loc")
     cafes = (
         db.session.execute(db.select(Cafe).where(Cafe.location == location))
         .scalars()
