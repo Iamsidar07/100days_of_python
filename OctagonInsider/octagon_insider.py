@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,14 +13,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from insider_news import InsiderNews
 
-USERNAME = ""
-PASSWORD = ""
+USERNAME = os.environ["TWITTER_USERNAME"]
+PASSWORD = os.environ["TWITTER_PASSWORD"]
 
 
 class OctagonInsider:
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
+        chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.all_news = None
@@ -68,12 +70,7 @@ class OctagonInsider:
         compose_btn.click()
         time.sleep(20)
         tweet_input = self.driver.find_element(
-            By.XPATH,
-            '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div['
-            "2]/div/div/div/div[3]/div[2]/div[1]/div/div/div/div[1]/div["
-            "2]/div/div/div/div/div/div/div["
-            "2]/div/div/div/div/label/div[1]/div/div/div/div/div/div["
-            "2]/div",
+            By.CSS_SELECTOR, "div[data-testid='tweetTextarea_0']"
         )
         tweet = f"{news.title}\n\n{news.url}\n#OctagonInsider #ufc #mma "
         print(tweet)
@@ -87,6 +84,20 @@ class OctagonInsider:
 
     def interact_with_tweets(self):
         print("Interacting...")
+        show_posts = self.driver.find_element(
+            By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']"
+        )
+        show_posts.click()
+        time.sleep(5)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "div[data-testid='like']"))
+        )
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "div[data-testid='retweet']"))
+        )
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "div[data-testid='caret']"))
+        )
         like_btns = self.driver.find_elements(
             By.CSS_SELECTOR, "div[data-testid='like']"
         )
@@ -105,6 +116,14 @@ class OctagonInsider:
             elif random_chance == 2:
                 more_btns[i].click()
                 time.sleep(2)
+                WebDriverWait(self.driver, 10).until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.CSS_SELECTOR,
+                            "div[data-testid='Dropdown'] > div:nth-child(2)",
+                        )
+                    )
+                )
                 follow_btn = self.driver.find_element(
                     By.CSS_SELECTOR, "div[data-testid='Dropdown'] > div:nth-child(2)"
                 )
@@ -115,6 +134,11 @@ class OctagonInsider:
 
             else:
                 retweet_btns[i].click()
+                WebDriverWait(self.driver, 10).until(
+                    EC.element_to_be_clickable(
+                        (By.CSS_SELECTOR, "div[data-testid='retweetConfirm']")
+                    )
+                )
                 retweet_confirm = self.driver.find_element(
                     By.CSS_SELECTOR, "div[data-testid='retweetConfirm']"
                 )
