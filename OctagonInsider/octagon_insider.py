@@ -25,6 +25,10 @@ class OctagonInsider:
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.all_news = None
+        self.get_news()
+        self.login_with_twitter(USERNAME, PASSWORD)
+        self.tweet_news()
+        self.interact_with_tweets()
 
     def get_news(self):
         news_url = "https://www.mmafighting.com/"
@@ -42,7 +46,7 @@ class OctagonInsider:
             all_news.append(new_news)
         self.all_news = all_news
 
-    def login_with_twitter(self):
+    def login_with_twitter(self, username, password):
         print("logging ...")
         self.driver.get("https://twitter.com/i/flow/login")
         time.sleep(3)
@@ -51,14 +55,14 @@ class OctagonInsider:
         )
         username = self.driver.find_element(By.NAME, "text")
         username.clear()
-        username.send_keys(USERNAME, Keys.ENTER)
+        username.send_keys(username, Keys.ENTER)
         time.sleep(5)
         WebDriverWait(self.driver, 15).until(
             EC.presence_of_element_located((By.NAME, "password"))
         )
         password = self.driver.find_element(By.NAME, "password")
         password.clear()
-        password.send_keys(PASSWORD, Keys.ENTER)
+        password.send_keys(password, Keys.ENTER)
         time.sleep(20)
 
     def tweet_news(self):
