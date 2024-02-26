@@ -8,3 +8,4 @@ venv/
 token.txt
 instance/
 .DS_Store
+venv/
