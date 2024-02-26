@@ -1,13 +1,18 @@
+import os
+import time
+
+from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
-import time
-from selenium.common.exceptions import ElementClickInterceptedException
 
-USERNAME = "better.coding"
-PASSWORD = "Manoj432003@"
+load_dotenv()
+
+USERNAME = os.environ.get("username")
+PASSWORD = os.environ.get("password")
 
 
 class InstagramBot:
