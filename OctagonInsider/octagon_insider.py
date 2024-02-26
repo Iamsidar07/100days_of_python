@@ -67,7 +67,7 @@ class OctagonInsider:
 
     def tweet_news(self):
         print("Tweeting...")
-        news = random.choice(self.all_news)
+        news = random.choice(self.all_news or [])
         compose_btn = self.driver.find_element(
             By.CSS_SELECTOR, "a[href='/compose/post']"
         )

@@ -4,7 +4,7 @@ import time
 
 def main():
     while True:
-        bot = OctagonInsider()
+        _ = OctagonInsider()
         time.sleep(60 * 60)
 
 
