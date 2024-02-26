@@ -11,10 +11,18 @@ for page_num in range(1, 33):
     # print(soup.title.string)
     table_titles = [title.text for title in soup.select(selector=".data-table__header")]
     # print(table_titles)
-    ranks = [int(rank.text.split(":")[1]) for rank in soup.select(selector=".csr-col--rank")[1::]]
-    school_types = [school_type.text.split(":")[1] for school_type in
-                    soup.select(selector=".csr-col--school-type")[1::]]
-    majors = [major.text.split(":")[1] for major in soup.select(selector=".csr-col--school-name")[1::]]
+    ranks = [
+        int(rank.text.split(":")[1])
+        for rank in soup.select(selector=".csr-col--rank")[1::]
+    ]
+    school_types = [
+        school_type.text.split(":")[1]
+        for school_type in soup.select(selector=".csr-col--school-type")[1::]
+    ]
+    majors = [
+        major.text.split(":")[1]
+        for major in soup.select(selector=".csr-col--school-name")[1::]
+    ]
     salaries_ele = soup.select(selector=".csr-col--right")
     early_career_pay = [salary.text.split(":")[1] for salary in salaries_ele[3::3]]
     mid_career_pay = [salary.text.split(":")[1] for salary in salaries_ele[4::3]]
@@ -27,5 +35,6 @@ for page_num in range(1, 33):
             file.write("\n")
         for i in range(len(ranks)):
             file.write(
-                f"{ranks[i]},{majors[i]},{school_types[i]},{early_career_pay[i]},{mid_career_pay[i]},{high_meaning[i]}\n")
+                f"{ranks[i]},{majors[i]},{school_types[i]},{early_career_pay[i]},{mid_career_pay[i]},{high_meaning[i]}\n"
+            )
     time.sleep(0.6)
