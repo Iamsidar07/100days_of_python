@@ -82,13 +82,6 @@ class Comment(db.Model):
 
 with app.app_context():
     db.create_all()
-    # new_user = User(
-    #     name = "Manish",
-    #     email = "b@gmail.com",
-    #     password = generate_password_hash("xpassword", method="pbkdf2:sha256", salt_length=8)
-    # )
-    # db.session.add(new_user)
-    # db.session.commit()
 
 
 @login_manager.user_loader
