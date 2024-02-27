@@ -28,8 +28,7 @@ for page_num in range(1, 33):
     table_titles = [title.text for title in soup.select(selector=".data-table__header")]
     # print(table_titles)
     ranks = [
-        int(format_text(rank))
-        for rank in soup.select(selector=".csr-col--rank")[1::]
+        int(format_text(rank)) for rank in soup.select(selector=".csr-col--rank")[1::]
     ]
     school_types = [
         format_text(school_type)
@@ -40,9 +39,15 @@ for page_num in range(1, 33):
         for major in soup.select(selector=".csr-col--school-name")[1::]
     ]
     salaries_ele = soup.select(selector=".csr-col--right")
-    early_career_pay = [format_salary(format_text(salary)) for salary in salaries_ele[3::3]]
-    mid_career_pay = [format_salary(format_text(salary)) for salary in salaries_ele[4::3]]
-    high_meaning = [format_high_meaning(format_text(salary)) for salary in salaries_ele[5::3]]
+    early_career_pay = [
+        format_salary(format_text(salary)) for salary in salaries_ele[3::3]
+    ]
+    mid_career_pay = [
+        format_salary(format_text(salary)) for salary in salaries_ele[4::3]
+    ]
+    high_meaning = [
+        format_high_meaning(format_text(salary)) for salary in salaries_ele[5::3]
+    ]
 
     with open("highest_paying_jobs.csv", mode="a") as file:
         if page_num == 1:
@@ -52,4 +57,4 @@ for page_num in range(1, 33):
             file.write(
                 f"{ranks[i]},{majors[i]},{school_types[i]},{early_career_pay[i]},{mid_career_pay[i]},{high_meaning[i]}\n"
             )
-    time.sleep(0.6)
+    time.sleep(0.3)
