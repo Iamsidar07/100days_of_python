@@ -1,6 +1,5 @@
 import os
 import time
-
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import ElementClickInterceptedException
@@ -9,7 +8,6 @@ from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
 
 load_dotenv()
-
 USERNAME = os.environ.get("username")
 PASSWORD = os.environ.get("password")
 
@@ -20,16 +18,12 @@ class InstagramBot:
         chrome_options.add_experimental_option("detach", True)
         chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=chrome_options)
-        self.driver.maximize_window()
         try:
+            self.driver.maximize_window()
             self.login(USERNAME, PASSWORD)
-            time.sleep(5)
             self.search_by_keyword(keyword="Programming")
-            time.sleep(5)
             self.click_on_account()
-            time.sleep(5)
             self.follow_accounts()
-            time.sleep(5)
         finally:
             self.driver.quit()
 
@@ -79,7 +73,7 @@ class InstagramBot:
         self.scroll_on_followers_list()
         follow_buttons = self.driver.find_elements(By.CSS_SELECTOR, "._aano button")
         for follow_btn in follow_buttons:
-            time.sleep(1)
+            time.sleep(0.1)
             if follow_btn.text == "Follow":
                 try:
                     follow_btn.click()
