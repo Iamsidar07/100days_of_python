@@ -1,27 +1,25 @@
 import random
 import time
 import os
-
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import ElementClickInterceptedException
 
 from insider_news import InsiderNews
 
-USERNAME = os.environ["TWITTER_USERNAME"]
-PASSWORD = os.environ["TWITTER_PASSWORD"]
+USERNAME = os.environ['username']
+PASSWORD = os.environ['password']
 
 
 class OctagonInsider:
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
-        chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.all_news = None
@@ -33,13 +31,19 @@ class OctagonInsider:
     def get_news(self):
         news_url = "https://www.mmafighting.com/"
         print("getting news..")
-        response = requests.get(news_url)
-        html_contents = response.text
-        soup = BeautifulSoup(html_contents, "html.parser")
-        news_elements = soup.select(selector=".c-entry-box--compact__title a")
-        news_urls = [url.get("href") for url in news_elements]
+        self.driver.get(news_url)
+        time.sleep(3)
 
-        news_titles = [url.getText() for url in news_elements]
+        # response = requests.get(news_url)
+        # html_contents = response.text
+        # soup = BeautifulSoup(html_contents, "html.parser")
+        WebDriverWait(self.driver, 15).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".c-entry-box--compact__title a"))
+        )
+        news_elements = self.driver.find_elements(By.CSS_SELECTOR, ".c-entry-box--compact__title a")
+        news_urls = [url.get_attribute("href") for url in news_elements]
+
+        news_titles = [url.text for url in news_elements]
         all_news = []
         for i in range(len(news_elements)):
             new_news = InsiderNews(news_title=news_titles[i], news_url=news_urls[i])
@@ -49,20 +53,20 @@ class OctagonInsider:
     def login_with_twitter(self, username, password):
         print("logging ...")
         self.driver.get("https://twitter.com/i/flow/login")
-        time.sleep(3)
+        time.sleep(5)
         WebDriverWait(self.driver, 15).until(
             EC.presence_of_element_located((By.NAME, "text"))
         )
-        username = self.driver.find_element(By.NAME, "text")
-        username.clear()
-        username.send_keys(username, Keys.ENTER)
+        username_input = self.driver.find_element(By.NAME, "text")
+        username_input.clear()
+        username_input.send_keys(username, Keys.ENTER)
         time.sleep(5)
         WebDriverWait(self.driver, 15).until(
             EC.presence_of_element_located((By.NAME, "password"))
         )
-        password = self.driver.find_element(By.NAME, "password")
-        password.clear()
-        password.send_keys(password, Keys.ENTER)
+        password_input = self.driver.find_element(By.NAME, "password")
+        password_input.clear()
+        password_input.send_keys(password, Keys.ENTER)
         time.sleep(20)
 
     def tweet_news(self):
@@ -88,6 +92,9 @@ class OctagonInsider:
 
     def interact_with_tweets(self):
         print("Interacting...")
+        WebDriverWait(self.driver, 15).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']"))
+        )
         show_posts = self.driver.find_element(
             By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']"
         )
@@ -114,37 +121,40 @@ class OctagonInsider:
 
         for i in range(len(like_btns)):
             random_chance = random.randint(1, 3)
-            if random_chance == 1:
-                like_btns[i].click()
-                print("liked")
-            elif random_chance == 2:
-                more_btns[i].click()
-                time.sleep(2)
-                WebDriverWait(self.driver, 10).until(
-                    EC.element_to_be_clickable(
-                        (
-                            By.CSS_SELECTOR,
-                            "div[data-testid='Dropdown'] > div:nth-child(2)",
+            try:
+                if random_chance == 1:
+                    like_btns[i].click()
+                    print("liked")
+                elif random_chance == 2:
+                    more_btns[i].click()
+                    time.sleep(2)
+                    WebDriverWait(self.driver, 10).until(
+                        EC.element_to_be_clickable(
+                            (
+                                By.CSS_SELECTOR,
+                                "div[data-testid='Dropdown'] > div:nth-child(2)",
+                            )
                         )
                     )
-                )
-                follow_btn = self.driver.find_element(
-                    By.CSS_SELECTOR, "div[data-testid='Dropdown'] > div:nth-child(2)"
-                )
-                if "Follow" in follow_btn.text:
-                    follow_btn.click()
-                    print("Followed")
-                time.sleep(1)
-
-            else:
-                retweet_btns[i].click()
-                WebDriverWait(self.driver, 10).until(
-                    EC.element_to_be_clickable(
-                        (By.CSS_SELECTOR, "div[data-testid='retweetConfirm']")
+                    follow_btn = self.driver.find_element(
+                        By.CSS_SELECTOR, "div[data-testid='Dropdown'] > div:nth-child(2)"
                     )
-                )
-                retweet_confirm = self.driver.find_element(
-                    By.CSS_SELECTOR, "div[data-testid='retweetConfirm']"
-                )
-                retweet_confirm.click()
-                print("retweet")
+                    if "Follow" in follow_btn.text:
+                        follow_btn.click()
+                        print("Followed")
+                    time.sleep(1)
+
+                else:
+                    retweet_btns[i].click()
+                    WebDriverWait(self.driver, 10).until(
+                        EC.element_to_be_clickable(
+                            (By.CSS_SELECTOR, "div[data-testid='retweetConfirm']")
+                        )
+                    )
+                    retweet_confirm = self.driver.find_element(
+                        By.CSS_SELECTOR, "div[data-testid='retweetConfirm']"
+                    )
+                    retweet_confirm.click()
+                    print("retweet")
+            except ElementClickInterceptedException:
+                print("Something went wrong!")
