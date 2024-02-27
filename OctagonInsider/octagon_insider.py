@@ -33,7 +33,6 @@ class OctagonInsider:
         print("getting news..")
         self.driver.get(news_url)
         time.sleep(3)
-
         # response = requests.get(news_url)
         # html_contents = response.text
         # soup = BeautifulSoup(html_contents, "html.parser")

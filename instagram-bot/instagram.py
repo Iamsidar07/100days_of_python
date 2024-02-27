@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver import ActionChains
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
 
@@ -17,7 +16,7 @@ PASSWORD = os.environ.get("password")
 
 class InstagramBot:
     def __init__(self) -> None:
-        chrome_options = Options()
+        chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option("detach", True)
         chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=chrome_options)
