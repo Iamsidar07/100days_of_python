@@ -11,15 +11,15 @@ from selenium.common.exceptions import ElementClickInterceptedException
 
 from insider_news import InsiderNews
 
-USERNAME = os.environ['username']
-PASSWORD = os.environ['password']
+USERNAME = "InsiderOctagon"
+PASSWORD = "Manoj432003@"
 
 
 class OctagonInsider:
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
-        # chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--headless")
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.all_news = None
@@ -37,9 +37,13 @@ class OctagonInsider:
         # html_contents = response.text
         # soup = BeautifulSoup(html_contents, "html.parser")
         WebDriverWait(self.driver, 15).until(
-            EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".c-entry-box--compact__title a"))
+            EC.presence_of_all_elements_located(
+                (By.CSS_SELECTOR, ".c-entry-box--compact__title a")
+            )
         )
-        news_elements = self.driver.find_elements(By.CSS_SELECTOR, ".c-entry-box--compact__title a")
+        news_elements = self.driver.find_elements(
+            By.CSS_SELECTOR, ".c-entry-box--compact__title a"
+        )
         news_urls = [url.get_attribute("href") for url in news_elements]
 
         news_titles = [url.text for url in news_elements]
@@ -92,7 +96,9 @@ class OctagonInsider:
     def interact_with_tweets(self):
         print("Interacting...")
         WebDriverWait(self.driver, 15).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']"))
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']")
+            )
         )
         show_posts = self.driver.find_element(
             By.CSS_SELECTOR, "div[data-testid='cellInnerDiv']"
@@ -136,7 +142,8 @@ class OctagonInsider:
                         )
                     )
                     follow_btn = self.driver.find_element(
-                        By.CSS_SELECTOR, "div[data-testid='Dropdown'] > div:nth-child(2)"
+                        By.CSS_SELECTOR,
+                        "div[data-testid='Dropdown'] > div:nth-child(2)",
                     )
                     if "Follow" in follow_btn.text:
                         follow_btn.click()

@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import time
 
 url = "https://www.payscale.com/college-salary-report/majors-that-pay-you-back/bachelors/page"
 
@@ -57,4 +56,3 @@ for page_num in range(1, 33):
             file.write(
                 f"{ranks[i]},{majors[i]},{school_types[i]},{early_career_pay[i]},{mid_career_pay[i]},{high_meaning[i]}\n"
             )
-    time.sleep(0.3)
