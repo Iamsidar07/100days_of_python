@@ -8,7 +8,10 @@ import os
 MY_EMAIL = os.environ.get("MY_EMAIL")
 PASSWORD = os.environ.get("PASSWORD")
 
-PRODUCT_URL = "https://www.amazon.com/Apple-2023-MacBook-512GB-Storage/dp/B0CB9BWMPY/ref=sr_1_3_mod_primary_new?keywords=macbook+air+15+inch&sr=8-3&language=en_US&currency=INR"
+PRODUCT_URL = (
+    "https://www.amazon.com/Apple-2023-MacBook-512GB-Storage/dp/B0CB9BWMPY/ref=sr_1_3_mod_primary_new"
+    "?keywords=macbook+air+15+inch&sr=8-3&language=en_US&currency=INR"
+)
 
 response = requests.get(PRODUCT_URL)
 html_contents = response.text
@@ -36,9 +39,8 @@ html = f"""\
         <body>
             <h2>{product_title}</h2>
             <img src={img_src} alt={product_title}/>
-            <p>Price has been drop out to <span style={"font-weight: bold;"}>{price_tag.getText()}</span>, Checkout your product</p>
-            <p>
-                <a href={PRODUCT_URL}>{PRODUCT_URL}</a>
+            <p>Price has been drop out to <span style={"font-weight: bold;"}>{price_tag.getText()}</span>, Checkout 
+            your product</p> <p> <a href={PRODUCT_URL}>{PRODUCT_URL}</a>
             </p>
         </body>
     </html>
