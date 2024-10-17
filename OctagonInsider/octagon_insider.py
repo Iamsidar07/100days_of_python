@@ -11,8 +11,8 @@ from selenium.common.exceptions import ElementClickInterceptedException
 
 from insider_news import InsiderNews
 
-USERNAME = "InsiderOctagon"
-PASSWORD = "Manoj432003@"
+USERNAME = ""
+PASSWORD = ""
 
 
 class OctagonInsider:
